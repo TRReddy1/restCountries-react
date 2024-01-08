@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SubRegion = ({ copyCards, region, fun }) => {
+const SubRegion = ({ copyCards, region, fun, setFun }) => {
   const [subregion, setSubregion] = useState(copyCards);
 
   const subs = copyCards.reduce((accu, curr) => {
@@ -25,12 +25,13 @@ const SubRegion = ({ copyCards, region, fun }) => {
       return card.subregion === target;
     });
     fun(result);
+    // setFun(result);
   };
 
   return (
     <div className="dropdown ">
       <button
-        className="btn btn-secondary dropdown-toggle bg-light text-black"
+        className="btn btn-secondary dropdown-toggle bg-white text-black"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"

@@ -11,9 +11,10 @@ const Search = ({
   byArea,
   cards,
   setFn,
+  // setFnSearch,
 }) => {
   return (
-    <div className="container-fluid searchFlex d-flex px-5">
+    <div className="container-fluid searchFlex d-flex  px-5">
       <div className="input-group my-3">
         <span className="input-group-text" id="basic-addon1">
           @
@@ -28,7 +29,7 @@ const Search = ({
       {/* dropdown */}
       <div className="dropdown ">
         <button
-          className="btn btn-secondary dropdown-toggle bg-light text-black"
+          className="btn btn-secondary dropdown-toggle bg-white text-black"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -73,7 +74,12 @@ const Search = ({
           </li>
         </ul>
       </div>
-      <SubRegion copyCards={cards} region={region} fun={setFn} />
+      <SubRegion
+        copyCards={cards}
+        region={region}
+        fun={setFn}
+        // setFun={setFnSearch}
+      />
       <Population popula={popu} />
       <Area byArea={byArea} />
     </div>

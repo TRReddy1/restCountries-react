@@ -17,11 +17,22 @@
   flex-wrap: wrap;
 }
 
+.onecard {
+  min-width: 18rem;
+}
+
 .dropdown-menu {
   min-width: 12em;
 }
 
-/* img {
+.imgs {
   width: 290px;
   height: 150px;
-} */
+}
+
+.detailedCard {
+  border: solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

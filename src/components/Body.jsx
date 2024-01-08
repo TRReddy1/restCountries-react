@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import Cards from "./Cards";
 
-const Body = () => {
+const Body = ({ themer, getCards }) => {
   const [cards, setCards] = useState([]);
   const [copyCards, setCopyCards] = useState([]);
   const [searchCard, setSearchCard] = useState(copyCards);
   const [region, setRegion] = useState([]);
+  const [searchedAndFilter, setSearchedAndFilter] = useState([]);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
       .then((data) => {
         setCards(data);
+        getCards(data);
         setCopyCards(data);
         setSearchCard(data);
+        setSearchedAndFilter(data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -25,7 +28,7 @@ const Body = () => {
     if (regionVal === "all") {
       setCopyCards(cards);
     } else {
-      const filt = cards.filter((card) => {
+      const filt = searchedAndFilter.filter((card) => {
         return card.region.toLowerCase() === regionVal;
       });
       setCopyCards(filt);
@@ -39,6 +42,7 @@ const Body = () => {
       return card.name.common.toLowerCase().trim().includes(inputed);
     });
     setCopyCards(result);
+    setSearchedAndFilter(result);
   };
 
   const population = (e) => {
@@ -65,7 +69,7 @@ const Body = () => {
   };
 
   return (
-    <>
+    <div style={themer}>
       <Search
         onclick={filtered}
         onsearched={searched}
@@ -74,13 +78,14 @@ const Body = () => {
         byArea={sortByArea}
         cards={cards}
         setFn={setCopyCards}
+        // setFnSearch={setSearchCard}
       />
       {copyCards.length === 0 ? (
         <h1>No Such Country Exist..</h1>
       ) : (
-        <Cards cards={copyCards} />
+        <Cards cards={copyCards} dark={themer} />
       )}
-    </>
+    </div>
   );
 };
 
