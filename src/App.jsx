@@ -9,7 +9,6 @@ export const theme = React.createContext();
 
 function App() {
   const [currTheme, setCurrTheme] = useState(false);
-  const [cards, setCards] = useState([]);
 
   const style1 = {
     backgroundColor: currTheme ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
@@ -23,13 +22,10 @@ function App() {
     <>
       <theme.Provider value={currTheme}>
         <NavLink style={{ textDecoration: "none" }}>
-          <Header onclick={themeSwither} themer={style1} />{" "}
+          <Header onclick={themeSwither} theme={currTheme} />{" "}
         </NavLink>
         <Routes>
-          <Route
-            path="/"
-            element={<Body themer={style1} getCards={setCards} />}
-          >
+          <Route path="/" element={<Body themer={style1} theme={currTheme} />}>
             {/* <theme.Provider value={currTheme}>
           <Header onclick={themeSwither} themer={style1} />
           <Body themer={style1} />    
@@ -38,7 +34,7 @@ function App() {
 
           <Route
             path="/country/:id"
-            element={<Detailed allCards={cards}></Detailed>}
+            element={<Detailed themer={style1} dark={currTheme}></Detailed>}
           ></Route>
         </Routes>
       </theme.Provider>

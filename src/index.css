@@ -5,6 +5,11 @@
 
 .input-group {
   width: 30%;
+  /* box-shadow: 0em 0em 0.05em hsl(209, 23%, 22%); */
+}
+
+#search {
+  border-left: none;
 }
 
 .searchFlex {
@@ -19,6 +24,7 @@
 
 .onecard {
   min-width: 18rem;
+  /* box-shadow: 0em 0em 0.05em hsl(209, 23%, 22%); */
 }
 
 .dropdown-menu {
@@ -30,9 +36,34 @@
   height: 150px;
 }
 
+.detailed {
+  width: 100vw;
+  height: 100vh;
+  padding-left: 2rem;
+}
+
 .detailedCard {
-  border: solid;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  align-items: center;
+  /* margin: 4rem 0em; */
+}
+
+.card-img-top {
+  width: 30rem;
+  height: 23rem;
+  margin-top: 2rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8rem;
+}
+
+.textedContent {
+  display: flex;
+  align-items: center;
+  padding: 2em 2em 0em 0em;
 }

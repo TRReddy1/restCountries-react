@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import Cards from "./Cards";
 
-const Body = ({ themer, getCards }) => {
+const Body = ({ themer, theme }) => {
   const [cards, setCards] = useState([]);
   const [copyCards, setCopyCards] = useState([]);
   const [searchCard, setSearchCard] = useState(copyCards);
@@ -14,7 +14,6 @@ const Body = ({ themer, getCards }) => {
       .then((res) => res.json())
       .then((data) => {
         setCards(data);
-        getCards(data);
         setCopyCards(data);
         setSearchCard(data);
         setSearchedAndFilter(data);
@@ -78,12 +77,13 @@ const Body = ({ themer, getCards }) => {
         byArea={sortByArea}
         cards={cards}
         setFn={setCopyCards}
+        theme={theme}
         // setFnSearch={setSearchCard}
       />
       {copyCards.length === 0 ? (
         <h1>No Such Country Exist..</h1>
       ) : (
-        <Cards cards={copyCards} dark={themer} />
+        <Cards cards={copyCards} dark={theme} />
       )}
     </div>
   );

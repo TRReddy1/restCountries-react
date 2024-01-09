@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SubRegion = ({ copyCards, region, fun, setFun }) => {
+const SubRegion = ({ copyCards, region, fun, style }) => {
   const [subregion, setSubregion] = useState(copyCards);
 
   const subs = copyCards.reduce((accu, curr) => {
@@ -31,18 +31,19 @@ const SubRegion = ({ copyCards, region, fun, setFun }) => {
   return (
     <div className="dropdown ">
       <button
-        className="btn btn-secondary dropdown-toggle bg-white text-black"
+        className="btn  dropdown-toggle"
         type="button"
-        data-bs-toggle="dropdown"
+        data-bs-toggle={list.length > 0 ? "dropdown" : ""}
         aria-expanded="false"
+        style={style}
       >
         Filter by SubRegion:
       </button>
-      <ul className="dropdown-menu" onClick={displayed}>
+      <ul className="dropdown-menu" onClick={displayed} style={style}>
         {list.map((lis) => {
           return (
             <li key={lis}>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="#" style={style}>
                 {lis}
               </a>
             </li>
