@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const Cards = ({ cards, dark }) => {
   return (
-    <div className="container-fluid px-5 cards d-flex ">
+    <div className="container-fluid cards d-flex ">
       {cards.map((card, index) => {
         return (
           <Card

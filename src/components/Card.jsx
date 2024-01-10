@@ -16,7 +16,7 @@ const Card = ({ id, flag, name, population, region, capital, currtheme }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="card onecard m-4"
+      className="card onecard"
       style={styles}
       id={id}
       onClick={() => navigate(`/country/${id}`)}

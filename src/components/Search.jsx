@@ -2,6 +2,7 @@ import React from "react";
 import Population from "./Population";
 import Area from "./Area";
 import SubRegion from "./SubRegion";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Search = ({
   onclick,
@@ -23,10 +24,10 @@ const Search = ({
   };
 
   return (
-    <div className="container-fluid searchFlex d-flex  px-5">
+    <div className="container-fluid searchFlex d-flex ">
       <div className="input-group  my-3">
         <span className="input-group-text" style={styles}>
-          @
+          <SearchIcon></SearchIcon>
         </span>
         <input
           type="text"
@@ -40,7 +41,7 @@ const Search = ({
       {/* dropdown */}
       <div className="dropdown ">
         <button
-          className="btn  dropdown-toggle"
+          className="btn regionFil dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"

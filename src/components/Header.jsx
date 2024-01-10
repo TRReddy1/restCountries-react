@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { theme } from "../App";
 
 const Header = ({ onclick, theme }) => {
@@ -24,7 +25,7 @@ const Header = ({ onclick, theme }) => {
           where in the world?
         </a>
         <button className="btn" type="submit" onClick={onclick} style={styles}>
-          darkmode
+          <DarkModeIcon></DarkModeIcon> darkmode
         </button>
       </div>
     </nav>

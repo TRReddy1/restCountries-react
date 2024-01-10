@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const Detailed = ({ themer, dark }) => {
   const [card, setCard] = useState([]);
-  const [res, setRes] = useState({});
+  const [res, setRes] = useState([]);
   const [languages, setLanguages] = useState([]);
 
   const navigate = useNavigate();
@@ -47,89 +48,96 @@ const Detailed = ({ themer, dark }) => {
   };
 
   return (
-    <div className="container-fluid detailed " style={themer}>
+    <div className="container-fluid detailed pt-5" style={themer}>
       <button
         type="button"
-        className="btn  m-3"
+        className="btn  m-3 px-4"
         style={styles}
         onClick={() => navigate(-1)}
       >
-        Back
+        <span className="arrow"> &larr; </span> Back
       </button>
-      <div className="caa detailedCard mt-5 py-5">
-        <div>
-          <img
-            src={res.flags && res.flags.png}
-            className="card-img-top"
-            alt="..."
-          />
-        </div>
-        <div className="details">
-          <div className="textedContent">
-            <div className="card-body leftText me-5">
-              <h1 className="card-title mb-4">{res.name && res.name.common}</h1>
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>Native name:</span>{" "}
-                {languages.length > 0 &&
-                  res.name.nativeName[languages[0]].official}
-              </p>
-              <p className="card-text">
-                {" "}
-                <span style={{ fontWeight: "600" }}>population:</span>{" "}
-                {res.population}
-              </p>
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>region:</span> {res.region}
-              </p>
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>subregion:</span>{" "}
-                {res.subregion}
-              </p>
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>capital:</span>{" "}
-                {res.capital}
-              </p>
-            </div>
-            <div className="rightText ms-5">
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>Top Level Domain:</span>{" "}
-                {res.tld}
-              </p>
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>currencies:</span>{" "}
-                {currency.length > 0 && res.currencies[currency[0]].name}
-              </p>
-              <p className="card-text">
-                <span style={{ fontWeight: "600" }}>languages:</span>{" "}
-                {languages.map((lang) => res.languages[lang]).join(", ")}
-              </p>
-            </div>
-          </div>
+      {res.length === 0 ? (
+        <CircularProgress />
+      ) : (
+        <div className="caa detailedCard mt-5 py-5">
           <div>
-            <p className="card-text mt-4">
-              <span style={{ fontWeight: "600" }}>Border Countries:</span>
-              {borders.length > 0
-                ? borders.map((border) => (
-                    <div
-                      key={border}
-                      type="button"
-                      className="btn m-2"
-                      style={styles}
-                      onClick={() => {
-                        var bordered = card.filter((c) => {
-                          return c.name.common === border;
-                        });
-                        navigate(`/country/${bordered[0].ccn3}`);
-                      }}
-                    >
-                      {border}
-                    </div>
-                  ))
-                : " No borders"}
-            </p>
+            <img
+              src={res.flags && res.flags.png}
+              className="card-img-top"
+              alt="..."
+            />
+          </div>
+          <div className="details">
+            <div className="textedContent">
+              <div className="card-body leftText me-5">
+                <h1 className="card-title mb-4">
+                  {res.name && res.name.common}
+                </h1>
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>Native name:</span>{" "}
+                  {languages.length > 0 &&
+                    res.name.nativeName[languages[0]].official}
+                </p>
+                <p className="card-text">
+                  {" "}
+                  <span style={{ fontWeight: "600" }}>population:</span>{" "}
+                  {res.population}
+                </p>
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>region:</span>{" "}
+                  {res.region}
+                </p>
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>subregion:</span>{" "}
+                  {res.subregion}
+                </p>
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>capital:</span>{" "}
+                  {res.capital}
+                </p>
+              </div>
+              <div className="rightText ms-5">
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>Top Level Domain:</span>{" "}
+                  {res.tld}
+                </p>
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>currencies:</span>{" "}
+                  {currency.length > 0 && res.currencies[currency[0]].name}
+                </p>
+                <p className="card-text">
+                  <span style={{ fontWeight: "600" }}>languages:</span>{" "}
+                  {languages.map((lang) => res.languages[lang]).join(", ")}
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="card-text mt-4">
+                <span style={{ fontWeight: "600" }}>Border Countries:</span>
+                {borders.length > 0
+                  ? borders.map((border) => (
+                      <div
+                        key={border}
+                        type="button"
+                        className="btn m-2"
+                        style={styles}
+                        onClick={() => {
+                          var bordered = card.filter((c) => {
+                            return c.name.common === border;
+                          });
+                          navigate(`/country/${bordered[0].ccn3}`);
+                        }}
+                      >
+                        {border}
+                      </div>
+                    ))
+                  : " No borders"}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

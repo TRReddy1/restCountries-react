@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import Cards from "./Cards";
+import { CircularProgress } from "@mui/material";
 
 const Body = ({ themer, theme }) => {
   const [cards, setCards] = useState([]);
   const [copyCards, setCopyCards] = useState([]);
-  const [searchCard, setSearchCard] = useState(copyCards);
+  const [searchCard, setSearchCard] = useState([]);
   const [region, setRegion] = useState([]);
   const [searchedAndFilter, setSearchedAndFilter] = useState([]);
 
@@ -80,10 +81,18 @@ const Body = ({ themer, theme }) => {
         theme={theme}
         // setFnSearch={setSearchCard}
       />
-      {copyCards.length === 0 ? (
-        <h1>No Such Country Exist..</h1>
+      {Cards.length === 0 ? (
+        <CircularProgress style={{ alignSelf: "center" }} />
       ) : (
+        // <h1>No Such Country Exist..</h1>
         <Cards cards={copyCards} dark={theme} />
+      )}
+
+      {cards.length > 0 && copyCards.length === 0 && (
+        <h1 style={{ textAlign: "center", marginTop: "20%" }}>
+          {" "}
+          No Such Country Exist..
+        </h1>
       )}
     </div>
   );
