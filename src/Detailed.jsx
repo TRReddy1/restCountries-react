@@ -135,7 +135,7 @@ const Detailed = ({ themer, dark }) => {
                           var bordered = card.filter((c) => {
                             return c.name.common === border;
                           });
-                          navigate(`/country/${bordered[0].ccn3}`);
+                          navigate(`/country/${bordered[0].cca3}`);
                         }}
                       >
                         {border}

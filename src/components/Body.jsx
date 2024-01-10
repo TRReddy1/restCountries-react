@@ -9,6 +9,7 @@ const Body = ({ themer, theme }) => {
   const [searchCard, setSearchCard] = useState([]);
   const [region, setRegion] = useState([]);
   const [searchedAndFilter, setSearchedAndFilter] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -18,6 +19,7 @@ const Body = ({ themer, theme }) => {
         setCopyCards(data);
         setSearchCard(data);
         setSearchedAndFilter(data);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -81,7 +83,7 @@ const Body = ({ themer, theme }) => {
         theme={theme}
         // setFnSearch={setSearchCard}
       />
-      {Cards.length < 0 ? (
+      {isLoading ? (
         <div
           style={{
             display: "flex",

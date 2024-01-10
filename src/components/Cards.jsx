@@ -8,7 +8,7 @@ const Cards = ({ cards, dark }) => {
         return (
           <Card
             key={index}
-            id={card.ccn3}
+            id={card.cca3}
             flag={card.flags.png}
             name={card.name.common}
             population={card.population}
