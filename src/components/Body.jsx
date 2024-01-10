@@ -81,8 +81,17 @@ const Body = ({ themer, theme }) => {
         theme={theme}
         // setFnSearch={setSearchCard}
       />
-      {Cards.length === 0 ? (
-        <CircularProgress style={{ alignSelf: "center" }} />
+      {Cards.length < 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "20%",
+          }}
+        >
+          <CircularProgress />
+        </div>
       ) : (
         // <h1>No Such Country Exist..</h1>
         <Cards cards={copyCards} dark={theme} />

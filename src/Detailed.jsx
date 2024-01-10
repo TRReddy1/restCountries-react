@@ -58,7 +58,16 @@ const Detailed = ({ themer, dark }) => {
         <span className="arrow"> &larr; </span> Back
       </button>
       {res.length === 0 ? (
-        <CircularProgress />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "20%",
+          }}
+        >
+          <CircularProgress />
+        </div>
       ) : (
         <div className="caa detailedCard mt-5 py-5">
           <div>
